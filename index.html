@@ -4,28 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soul-Hub | Personality Analyzer</title>
+    <title>Soul-Hub | Personality Test</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8142333751075278"
-     crossorigin="anonymous"></script>
-
-    <!-- Tailwind CSS for Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Chart.js for the Result Graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8142333751075278"
+        crossorigin="anonymous"></script>
+    <meta name="description"
+        content="Analyze your personality patterns with Soul-Hub, a tool created by Galileo:) (A programmer and a medical student) for self-awareness. Measure alignment with styles like Borderline, Histrionic, Compulsive, and more. Features a beautiful interactive interface and in-depth statistical breakdowns.">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0f172a;
-            /* Slate 900 */
             color: #e2e8f0;
         }
 
@@ -74,7 +66,6 @@
             width: 100%;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -114,11 +105,9 @@
 <body
     class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
 
-    <!-- Main Container -->
     <div id="app-container"
         class="w-full max-w-4xl glass-panel rounded-2xl flex flex-col relative overflow-hidden h-[90vh]">
 
-        <!-- Decorative Background Elements -->
         <div
             class="absolute top-0 left-0 w-32 h-32 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob pointer-events-none">
         </div>
@@ -126,32 +115,28 @@
             class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none">
         </div>
 
-        <!-- NAVIGATION BAR -->
         <nav class="p-6 border-b border-slate-700/50 flex flex-wrap justify-between items-center z-20 bg-slate-900/40">
             <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
-                <!-- <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">P
-                </div> -->
+                
                 <span class="font-bold text-lg tracking-tight">Soul-Hub</span>
             </div>
 
-            <!-- Desktop Menu -->
             <div class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
                 <span onclick="navigateTo('home')" class="nav-link hover:text-white" id="nav-home">Home</span>
                 <span onclick="navigateTo('about')" class="nav-link hover:text-white" id="nav-about">About Me</span>
                 <span onclick="navigateTo('contact')" class="nav-link hover:text-white" id="nav-contact">Contact</span>
+                <a href="blog.html"><span class="nav-link hover:text-white" id="nav-contact">Library</span></a>
                 <span onclick="navigateTo('disclaimer')" class="nav-link hover:text-white"
                     id="nav-disclaimer">Disclaimer</span>
                 <span onclick="navigateTo('privacy')" class="nav-link hover:text-white" id="nav-privacy">Privacy</span>
             </div>
 
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-slate-300 hover:text-white"
                 onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </nav>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu"
             class="hidden md:hidden bg-slate-800 border-b border-slate-700 p-4 absolute top-[80px] left-0 w-full z-30 flex flex-col gap-4 shadow-xl">
             <span onclick="navigateTo('home'); toggleMobileMenu()"
@@ -166,10 +151,8 @@
                 class="text-slate-300 hover:text-white py-2">Privacy Policy</span>
         </div>
 
-        <!-- CONTENT AREA (Scrollable) -->
         <div class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 relative">
 
-            <!-- PAGE: HOME / WELCOME -->
             <div id="page-home" class="fade-in">
                 <div class="text-center mt-8">
                     <div class="mb-6 inline-block p-4 rounded-full bg-indigo-500/20 text-indigo-300">
@@ -194,11 +177,10 @@
                     <p class="text-xs text-slate-500 uppercase tracking-widest">Takes approx 10-15 minutes</p>
                 </div>
 
-                <!-- Teaser for About Me -->
                 <div class="mt-16 text-center">
                     <p class="text-slate-400 text-sm cursor-pointer hover:text-indigo-300 transition-colors"
                         onclick="navigateTo('about')">
-                        Created by Ahmed <i class="fas fa-arrow-right ml-1"></i>
+                        Created by Galileo:&#41; <i class="fas fa-arrow-right ml-1"></i>
                     </p>
                 </div>
             </div>
@@ -208,7 +190,6 @@
                 <div class="bg-slate-800/30 rounded-xl p-6 md:p-8 border border-slate-700/50">
                     <div class="flex flex-col md:flex-row items-start gap-8">
                         <div class="shrink-0 mx-auto md:mx-0">
-                            <!-- Image: Displays ahmed.jpg, falls back to initials if not found -->
                             <img src="ahmed.jpg" alt="Ahmed"
                                 class="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg"
                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ahmed&background=6366f1&color=fff&size=128'">
@@ -217,7 +198,7 @@
                             <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                                 About Me
                                 <span
-                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Coder and part-time med-student</span>
+                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Programmer and part-time med-student</span>
                             </h2>
                             <div class="h-1 w-20 bg-indigo-500 rounded mb-6"></div>
 
@@ -225,11 +206,11 @@
                                 Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer and a part-time medstudent 
                             </p>
                             <p class="text-slate-300 text-base leading-relaxed mb-6">
-                                I created this website to share interactive tests and self-assessment tools that help
-                                people explore their personality, emotions, and mental patterns in a simple, accessible
+                                I’m also interested in AI development, and psychology
+                                I've created this website to make it easy for people explore their personalities, emotions, and mental patterns in a simple, accessible
                                 way.
-                                I’m also interested in computer science, AI development, and creating digital tools that
-                                make self-reflection easier and more enjoyable.
+                                <p>If interested, Follow me on social media!</p>
+                                
                             </p>
 
                             <div class="mt-8 flex gap-4">
@@ -454,7 +435,7 @@
                         </div>
 
                         <div class="bg-indigo-900/20 border border-indigo-500/30 p-4 rounded-xl">
-                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern</h3>
+                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a href="blog.html">Library</a></h3>
                             <p id="dominant-trait-desc" class="text-slate-200 text-sm leading-relaxed"></p>
                         </div>
                     </div>
@@ -480,7 +461,7 @@
                 </div>
             </div>
 
-        </div> <!-- End of Content Area -->
+        </div>
     </div>
 
     <script>
@@ -645,7 +626,6 @@
             "Histrionic": 0, "Schizoid": 0, "Aggressive": 0
         };
 
-        // Fisher-Yates Shuffle
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -653,7 +633,6 @@
             }
         }
 
-        // Initialize App
         let shuffledQuestions = [...questions];
         shuffleArray(shuffledQuestions);
 
@@ -667,7 +646,6 @@
             document.getElementById('question-category').innerText = `Question ${currentQuestionIndex + 1}`;
             document.getElementById('question-text').innerText = question.text;
 
-            // Update progress bar
             const progress = ((currentQuestionIndex) / shuffledQuestions.length) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
             document.getElementById('question-tracker').innerText = `${currentQuestionIndex + 1} / ${shuffledQuestions.length}`;
@@ -824,6 +802,5 @@
         document.getElementById('nav-home').classList.add('active', 'text-white');
     </script>
 </body>
-
 
 </html>
