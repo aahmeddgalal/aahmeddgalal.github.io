@@ -124,14 +124,10 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex gap-6 text-sm font-medium text-slate-300 items-center">
                 <span onclick="navigateTo('home')" class="nav-link hover:text-white" id="nav-home">Home</span>
-
-                <!-- Library Link (Desktop) -->
                 <a href="blog.html" class="nav-link text-indigo-400 font-bold hover:text-indigo-300">Library</a>
-
                 <span onclick="navigateTo('about')" class="nav-link hover:text-white" id="nav-about">About Me</span>
                 <span onclick="navigateTo('contact')" class="nav-link hover:text-white" id="nav-contact">Contact</span>
-                <span onclick="navigateTo('disclaimer')" class="nav-link hover:text-white"
-                    id="nav-disclaimer">Disclaimer</span>
+                <span onclick="navigateTo('disclaimer')" class="nav-link hover:text-white" id="nav-disclaimer">Disclaimer</span>
                 <span onclick="navigateTo('privacy')" class="nav-link hover:text-white" id="nav-privacy">Privacy</span>
             </div>
 
@@ -142,18 +138,14 @@
             </button>
         </nav>
 
-        <!-- Mobile Menu Dropdown (Fixed) -->
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu"
             class="hidden md:hidden bg-slate-800 border-b border-slate-700 p-4 absolute top-[80px] left-0 w-full z-30 flex flex-col gap-4 shadow-xl">
             <span onclick="navigateTo('home'); toggleMobileMenu()"
                 class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">Home</span>
-
-            <!-- ADDED LIBRARY HERE (THIS WAS MISSING) -->
-            <a href="blog.html"
-                class="text-indigo-400 font-bold hover:text-indigo-300 py-2 border-b border-slate-700/50">
+            <a href="blog.html" class="text-indigo-400 font-bold hover:text-indigo-300 py-2 border-b border-slate-700/50">
                 <i class="fas fa-book-medical mr-2"></i>Psychology Library
             </a>
-
             <span onclick="navigateTo('about'); toggleMobileMenu()"
                 class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">About Me</span>
             <span onclick="navigateTo('contact'); toggleMobileMenu()"
@@ -188,13 +180,11 @@
                         Begin Assessment
                     </button>
                     <p class="text-xs text-slate-500 uppercase tracking-widest">Takes approx 10-15 minutes</p>
-
-                    <!-- Call to Action for Library (Home) -->
+                    
                     <div class="mt-8 pt-8 border-t border-slate-700/50">
                         <p class="text-slate-400 text-sm mb-4">Want to learn more about personality disorders?</p>
-                        <a href="blog.html"
-                            class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold group transition-colors">
-                            Visit the Psychology Library
+                        <a href="blog.html" class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold group transition-colors">
+                            Visit the Psychology Library 
                             <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -221,22 +211,18 @@
                             <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                                 About Me
                                 <span
-                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Programmer
-                                    and part-time med-student</span>
+                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Programmer and part-time med-student</span>
                             </h2>
                             <div class="h-1 w-20 bg-indigo-500 rounded mb-6"></div>
 
                             <p class="text-slate-300 text-base leading-relaxed mb-4">
-                                Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer
-                                and a part-time medstudent
+                                Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer and a part-time medstudent 
                             </p>
                             <p class="text-slate-300 text-base leading-relaxed mb-6">
-                                I’m also interested in AI development, and psychology
-                                I've created this website to make it easy for people explore their personalities,
-                                emotions, and mental patterns in a simple, accessible
+                                I’m also interested in AI development, and psychology.
+                                I've created this website to make it easy for people to explore their personalities, emotions, and mental patterns in a simple, accessible
                                 way.
-                            <p>If interested, Follow me on social media!</p>
-
+                                <p>If interested, Follow me on social media!</p>
                             </p>
 
                             <div class="mt-8 flex gap-4">
@@ -253,72 +239,44 @@
             <!-- PAGE: CONTACT -->
             <div id="page-contact" class="hidden fade-in">
                 <h2 class="text-2xl font-bold text-white mb-6">Contact & Info</h2>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Instagram -->
                     <a href="https://www.instagram.com/aahmeddgalal?igsh=MWowbGMzYWwwemFmYQ%3D%3D&utm_source=qr"
                         target="_blank"
                         class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-pink-500/50 hover:bg-slate-800 transition-all group">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 rounded-full bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-200">Instagram</h3>
-                                <p class="text-xs text-slate-400">@aahmeddgalal</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fab fa-instagram"></i></div>
+                            <div><h3 class="font-bold text-slate-200">Instagram</h3><p class="text-xs text-slate-400">@aahmeddgalal</p></div>
                         </div>
                     </a>
-
                     <!-- Facebook -->
                     <a href="https://www.facebook.com/share/1ALjHnkErL/?mibextid=wwXIfr" target="_blank"
                         class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800 transition-all group">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fab fa-facebook-f"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-200">Facebook</h3>
-                                <p class="text-xs text-slate-400">Connect on Facebook</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fab fa-facebook-f"></i></div>
+                            <div><h3 class="font-bold text-slate-200">Facebook</h3><p class="text-xs text-slate-400">Connect on Facebook</p></div>
                         </div>
                     </a>
-
                     <!-- Email -->
                     <a href="mailto:aahmeddgalal@gmail.com"
                         class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all group">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-200">Email</h3>
-                                <p class="text-xs text-slate-400">aahmeddgalal@gmail.com</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-envelope"></i></div>
+                            <div><h3 class="font-bold text-slate-200">Email</h3><p class="text-xs text-slate-400">aahmeddgalal@gmail.com</p></div>
                         </div>
                     </a>
-
                     <!-- Linktree -->
                     <a href="https://linktr.ee/aahmeddgalal" target="_blank"
                         class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-green-500/50 hover:bg-slate-800 transition-all group">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 rounded-full bg-green-600/20 text-green-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                <i class="fas fa-link"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-200">Linktree</h3>
-                                <p class="text-xs text-slate-400">All Links</p>
-                            </div>
+                            <div class="w-12 h-12 rounded-full bg-green-600/20 text-green-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform"><i class="fas fa-link"></i></div>
+                            <div><h3 class="font-bold text-slate-200">Linktree</h3><p class="text-xs text-slate-400">All Links</p></div>
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- PAGE: DISCLAIMER -->
+            <!-- PAGE: DISCLAIMER & PRIVACY (Same as before) -->
             <div id="page-disclaimer" class="hidden fade-in">
                 <h2 class="text-2xl font-bold text-white mb-6">Disclaimer</h2>
                 <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mb-6">
@@ -326,64 +284,41 @@
                         <i class="fas fa-exclamation-triangle text-red-400 text-2xl mt-1"></i>
                         <div>
                             <h3 class="text-lg font-bold text-red-200 mb-2">Not a Medical Diagnosis</h3>
-                            <p class="text-red-100/80 text-sm leading-relaxed">
-                                The tests and content on this website are for <strong>educational, entertainment, and
-                                    self-awareness purposes only</strong>. They are not a substitute for a professional
-                                psychological evaluation, medical diagnosis, or treatment.
-                            </p>
+                            <p class="text-red-100/80 text-sm leading-relaxed">The tests and content on this website are for <strong>educational, entertainment, and self-awareness purposes only</strong>. They are not a substitute for a professional psychological evaluation, medical diagnosis, or treatment.</p>
                         </div>
                     </div>
                 </div>
                 <div class="text-slate-300 space-y-4 text-sm leading-relaxed">
-                    <p>
-                        While these assessments are based on psychological theories and established traits, an online
-                        quiz cannot account for the complexity of individual mental health. High scores in specific
-                        categories (e.g., Narcissism, Depressive) do not constitute a clinical disorder.
-                    </p>
-                    <p>
-                        If you are experiencing distress, mental health challenges, or are concerned about your
-                        well-being, please consult a qualified mental health professional or doctor.
-                    </p>
+                    <p>While these assessments are based on psychological theories and established traits, an online quiz cannot account for the complexity of individual mental health. High scores in specific categories (e.g., Narcissism, Depressive) do not constitute a clinical disorder.</p>
+                    <p>If you are experiencing distress, mental health challenges, or are concerned about your well-being, please consult a qualified mental health professional or doctor.</p>
                 </div>
             </div>
 
-            <!-- PAGE: PRIVACY POLICY -->
             <div id="page-privacy" class="hidden fade-in">
                 <h2 class="text-2xl font-bold text-white mb-6">Privacy Policy</h2>
                 <div class="space-y-6 text-slate-300 leading-relaxed">
                     <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
                         <h3 class="text-indigo-300 font-bold mb-2">1. No Data Storage</h3>
-                        <p class="text-sm">
-                            PersonaFlow is a client-side application. This means that <strong>all processing happens
-                                directly in your web browser</strong>. We do not have a backend server, database, or
-                            cloud storage. Your answers, scores, and results are never sent to us or stored on any
-                            server.
-                        </p>
+                        <p class="text-sm">PersonaFlow is a client-side application. This means that <strong>all processing happens directly in your web browser</strong>. We do not have a backend server, database, or cloud storage. Your answers, scores, and results are never sent to us or stored on any server.</p>
                     </div>
-
                     <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
                         <h3 class="text-indigo-300 font-bold mb-2">2. Anonymity</h3>
-                        <p class="text-sm">
-                            Since we do not collect data, your participation is completely anonymous. Once you close or
-                            refresh this page, your results are lost permanently unless you choose to save them manually
-                            (e.g., by taking a screenshot).
-                        </p>
+                        <p class="text-sm">Since we do not collect data, your participation is completely anonymous. Once you close or refresh this page, your results are lost permanently unless you choose to save them manually (e.g., by taking a screenshot).</p>
                     </div>
-
                     <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
                         <h3 class="text-indigo-300 font-bold mb-2">3. Third-Party Services</h3>
-                        <p class="text-sm">
-                            This website is hosted on GitHub Pages. Please refer to GitHub's privacy statement regarding
-                            standard web logs (IP addresses) that are collected for security and hosting purposes. We
-                            also use external libraries (Chart.js, Tailwind, FontAwesome) loaded via CDNs which may
-                            collect standard usage metrics.
-                        </p>
+                        <p class="text-sm">This website is hosted on GitHub Pages. Please refer to GitHub's privacy statement regarding standard web logs (IP addresses) that are collected for security and hosting purposes. We also use external libraries (Chart.js, Tailwind, FontAwesome) loaded via CDNs which may collect standard usage metrics.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- PAGE: QUIZ (Existing) -->
-            <div id="page-quiz" class="hidden fade-in">
+            <!-- PAGE: QUIZ -->
+            <div id="page-quiz" class="hidden fade-in relative">
+                <!-- NEW: Back Button -->
+                <button id="btn-back" onclick="goBack()" class="hidden text-slate-400 hover:text-white mb-4 text-sm flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Previous Question
+                </button>
+
                 <div class="flex justify-between text-xs text-slate-400 mb-2 uppercase tracking-wide">
                     <span>Assessment Progress</span>
                     <span id="question-tracker">1 / 100</span>
@@ -408,32 +343,27 @@
                 <div class="space-y-3">
                     <button onclick="handleAnswer(1)"
                         class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
-                        <span
-                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">1</span>
+                        <span class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">1</span>
                         <span class="text-slate-300 group-hover:text-white">Strongly Disagree</span>
                     </button>
                     <button onclick="handleAnswer(2)"
                         class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
-                        <span
-                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">2</span>
+                        <span class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">2</span>
                         <span class="text-slate-300 group-hover:text-white">Disagree</span>
                     </button>
                     <button onclick="handleAnswer(3)"
                         class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
-                        <span
-                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">3</span>
+                        <span class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">3</span>
                         <span class="text-slate-300 group-hover:text-white">Neutral</span>
                     </button>
                     <button onclick="handleAnswer(4)"
                         class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
-                        <span
-                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">4</span>
+                        <span class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">4</span>
                         <span class="text-slate-300 group-hover:text-white">Agree</span>
                     </button>
                     <button onclick="handleAnswer(5)"
                         class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
-                        <span
-                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">5</span>
+                        <span class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">5</span>
                         <span class="text-slate-300 group-hover:text-white">Strongly Agree</span>
                     </button>
                 </div>
@@ -441,9 +371,7 @@
 
             <!-- PAGE: LOADING -->
             <div id="page-loading" class="hidden text-center py-20 fade-in">
-                <div
-                    class="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-500 mb-4">
-                </div>
+                <div class="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-500 mb-4"></div>
                 <h2 class="text-2xl font-bold">Analyzing Profile...</h2>
                 <p class="text-slate-400">Comparing response patterns to established archetypes.</p>
             </div>
@@ -455,29 +383,21 @@
                     <div>
                         <h2 class="text-2xl font-bold mb-2">Psychological Matrix</h2>
                         <p class="text-slate-400 mb-6 text-sm">Visual representation of your personality traits.</p>
-
                         <div class="relative w-full h-[350px] mb-6">
                             <canvas id="radarChart"></canvas>
                         </div>
-
                         <div class="bg-indigo-900/20 border border-indigo-500/30 p-4 rounded-xl">
-                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a
-                                    href="blog.html" class="underline hover:text-white">Library</a></h3>
+                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a href="blog.html" class="underline hover:text-white">Library</a></h3>
                             <p id="dominant-trait-desc" class="text-slate-200 text-sm leading-relaxed"></p>
                         </div>
                     </div>
-
                     <!-- Right Col: Detailed Stats -->
                     <div>
                         <h2 class="text-2xl font-bold mb-2">Detailed Statistics</h2>
                         <p class="text-slate-400 mb-6 text-sm">Percentage match for each factor.</p>
-
                         <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-                            <div id="stats-grid" class="grid grid-cols-1 gap-y-3">
-                                <!-- Injected JS -->
-                            </div>
+                            <div id="stats-grid" class="grid grid-cols-1 gap-y-3"></div>
                         </div>
-
                         <div class="mt-8">
                             <button onclick="location.reload()"
                                 class="w-full py-4 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition-colors">
@@ -494,18 +414,14 @@
     <script>
         // --- NAVIGATION LOGIC ---
         function navigateTo(pageId) {
-            // Hide all pages
             const pages = ['home', 'about', 'contact', 'disclaimer', 'privacy', 'quiz', 'loading', 'result'];
             pages.forEach(p => {
                 const el = document.getElementById('page-' + p);
                 if (el) el.classList.add('hidden');
             });
-
-            // Show target page
             const targetEl = document.getElementById('page-' + pageId);
             if (targetEl) targetEl.classList.remove('hidden');
 
-            // Update Navigation Active State (Desktop)
             const navLinks = ['home', 'about', 'contact', 'disclaimer', 'privacy'];
             navLinks.forEach(p => {
                 const navEl = document.getElementById('nav-' + p);
@@ -521,9 +437,6 @@
         }
 
         // --- DATA & CONFIG ---
-        // 10 Clinical Factors: 
-        // Narcissism, Borderline, Depressive, Anxiety, Compulsive, Avoidant, Paranoid, Histrionic, Schizoid, Aggressive
-
         const questions = [
             // --- 1. Narcissism (Grandiosity, Entitlement) ---
             { category: "Narcissism", text: "I believe I am more capable than most people." },
@@ -652,6 +565,9 @@
             "Compulsive": 0, "Avoidant": 0, "Paranoid": 0,
             "Histrionic": 0, "Schizoid": 0, "Aggressive": 0
         };
+        
+        // NEW: Answer History to track points added
+        let answerHistory = [];
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -665,6 +581,10 @@
 
         function startQuiz() {
             navigateTo('quiz');
+            // Reset History
+            answerHistory = [];
+            // Hide Back button initially
+            document.getElementById('btn-back').classList.add('hidden');
             renderQuestion();
         }
 
@@ -681,38 +601,63 @@
         function handleAnswer(value) {
             const question = shuffledQuestions[currentQuestionIndex];
             scores[question.category] += value;
+            
+            // Push value to history
+            answerHistory.push(value);
 
             currentQuestionIndex++;
 
             if (currentQuestionIndex < shuffledQuestions.length) {
                 renderQuestion();
+                // Show Back Button if we are past first question
+                if (currentQuestionIndex > 0) {
+                    document.getElementById('btn-back').classList.remove('hidden');
+                }
             } else {
                 showLoading();
+            }
+        }
+        
+        // NEW: Go Back Function
+        function goBack() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                
+                // Retrieve last answer value
+                const lastValue = answerHistory.pop();
+                
+                // Get the category of the question we are going back to
+                const question = shuffledQuestions[currentQuestionIndex];
+                
+                // Subtract the score
+                scores[question.category] -= lastValue;
+                
+                renderQuestion();
+                
+                // Hide button if back at start
+                if (currentQuestionIndex === 0) {
+                    document.getElementById('btn-back').classList.add('hidden');
+                }
             }
         }
 
         function showLoading() {
             navigateTo('loading');
-
             setTimeout(showResults, 2000);
         }
 
         function showResults() {
             navigateTo('result');
-
             renderChart();
             generateAnalysis();
         }
 
         function generateAnalysis() {
-            // 1. Calculate Percentages
-            // Max raw score per category is 10 questions * 5 points = 50.
             const percentages = {};
             for (const trait in scores) {
                 percentages[trait] = Math.round((scores[trait] / 50) * 100);
             }
 
-            // 2. Determine Dominant Trait
             let maxPercent = 0;
             let dominantTrait = "";
             for (const [trait, percent] of Object.entries(percentages)) {
@@ -722,11 +667,8 @@
                 }
             }
 
-            // 3. Render Stats Grid with Percentages
             const statsGrid = document.getElementById('stats-grid');
             let gridHTML = '';
-
-            // Sort traits by percentage descending
             const sortedTraits = Object.entries(percentages).sort((a, b) => b[1] - a[1]);
 
             sortedTraits.forEach(([trait, percent]) => {
@@ -746,19 +688,17 @@
             });
             statsGrid.innerHTML = gridHTML;
 
-
-            // 4. Dominant Trait Description
             const descriptions = {
-                "Narcissism": "High scores indicate a need for admiration and a lack of empathy. You may prioritize your own image and success above the needs of others.",
-                "Borderline": "High scores indicate emotional instability and a fear of abandonment. Relationships may be intense and moods can fluctuate rapidly.",
-                "Depressive": "High scores indicate feelings of sadness, low energy, and pessimism. You may struggle to find joy in daily activities.",
-                "Anxiety": "High scores indicate excessive worry and tension. You may constantly anticipate negative outcomes.",
-                "Compulsive": "High scores indicate a need for order, perfectionism, and control. Flexibility may be difficult for you.",
-                "Avoidant": "High scores indicate social inhibition and feelings of inadequacy. You likely avoid social risk to prevent rejection.",
-                "Paranoid": "High scores indicate distrust and suspicion of others. You may perceive threats where none exist.",
-                "Histrionic": "High scores indicate excessive emotionality and attention-seeking. You may feel uncomfortable when not the focus of attention.",
-                "Schizoid": "High scores indicate a detachment from social relationships and a restricted range of emotional expression.",
-                "Aggressive": "High scores indicate hostility and a tendency towards conflict or domination."
+                "Narcissism": "High scores indicate a need for admiration and a lack of empathy.",
+                "Borderline": "High scores indicate emotional instability and a fear of abandonment.",
+                "Depressive": "High scores indicate feelings of sadness, low energy, and pessimism.",
+                "Anxiety": "High scores indicate excessive worry and tension.",
+                "Compulsive": "High scores indicate a need for order, perfectionism, and control.",
+                "Avoidant": "High scores indicate social inhibition and feelings of inadequacy.",
+                "Paranoid": "High scores indicate distrust and suspicion of others.",
+                "Histrionic": "High scores indicate excessive emotionality and attention-seeking.",
+                "Schizoid": "High scores indicate a detachment from social relationships.",
+                "Aggressive": "High scores indicate hostility and a tendency towards conflict."
             };
 
             const descEl = document.getElementById('dominant-trait-desc');
@@ -767,12 +707,9 @@
 
         function renderChart() {
             const ctx = document.getElementById('radarChart').getContext('2d');
-
-            // Map scores to percentages
             const labels = Object.keys(scores);
             const dataValues = labels.map(label => (scores[label] / 50) * 100);
 
-            // Destroy existing chart if present to prevent overlap
             const chartStatus = Chart.getChart("radarChart");
             if (chartStatus != undefined) {
                 chartStatus.destroy();
@@ -785,8 +722,8 @@
                     datasets: [{
                         label: 'Trait Intensity',
                         data: dataValues,
-                        backgroundColor: 'rgba(239, 68, 68, 0.4)', // Red-500 transparent
-                        borderColor: '#f87171', // Red-400
+                        backgroundColor: 'rgba(239, 68, 68, 0.4)',
+                        borderColor: '#f87171',
                         pointBackgroundColor: '#fff',
                         pointBorderColor: '#f87171',
                         pointHoverBackgroundColor: '#fff',
@@ -801,31 +738,17 @@
                         r: {
                             angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
                             grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                            pointLabels: {
-                                color: '#cbd5e1', // Slate-300
-                                font: {
-                                    size: 11,
-                                    family: "'Inter', sans-serif"
-                                }
-                            },
-                            ticks: {
-                                display: false,
-                                backdropColor: 'transparent',
-                                max: 100,
-                                min: 0
-                            },
+                            pointLabels: { color: '#cbd5e1', font: { size: 11, family: "'Inter', sans-serif" } },
+                            ticks: { display: false, backdropColor: 'transparent', max: 100, min: 0 },
                             suggestedMin: 0,
                             suggestedMax: 100
                         }
                     },
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
         }
 
-        // Init - Highlight Home
         document.getElementById('nav-home').classList.add('active', 'text-white');
     </script>
 </body>
