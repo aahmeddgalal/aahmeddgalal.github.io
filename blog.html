@@ -27,15 +27,49 @@
             transform: translateY(-4px);
             border-color: #6366f1;
         }
+
+        /* --- NEW MARQUEE ANIMATION --- */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: rolling 15s linear infinite;
+            padding-left: 100%;
+            /* Starts off-screen to the right */
+        }
+
+        @keyframes rolling {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        
     </style>
 </head>
 
-<body class="min-h-screen p-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-    <div class="max-w-6xl mx-auto">
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+
+    <div class="w-full bg-indigo-600/20 border-b border-indigo-500/30 text-indigo-200 py-2 marquee-container">
+        <div class="marquee-content font-semibold text-sm flex items-center">
+            <i class="fas fa-language mr-2"></i>
+            The Blog will be translated to Arabic soon... Stay tuned! &nbsp;&nbsp;&nbsp;&nbsp; |
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            سيتم ترجمة المدونة قريباً... انتظرونا!
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto p-4">
         <nav class="flex justify-between items-center py-6 mb-8 border-b border-slate-700/50">
             <a href="index.html" class="flex items-center gap-2 hover:text-white transition-colors">
-                <!-- <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">P
-                </div> -->
                 <span class="font-bold text-lg">Soul-Hub</span>
             </a>
             <a href="index.html" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300">Back to Test <i
@@ -50,115 +84,114 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- 1. Narcissism -->
             <a href="narcissism.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-red-900/20 rounded-xl mb-4 flex items-center justify-center border border-red-500/20">
-                    <i class="fas fa-crown text-4xl text-red-400"></i></div>
+                    <i class="fas fa-crown text-4xl text-red-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Narcissism</h2>
                 <p class="text-sm text-slate-400">Grandiosity, need for admiration, and lack of empathy.</p>
             </a>
 
-            <!-- 2. Borderline -->
             <a href="bpd.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-purple-900/20 rounded-xl mb-4 flex items-center justify-center border border-purple-500/20">
-                    <i class="fas fa-heart-broken text-4xl text-purple-400"></i></div>
+                    <i class="fas fa-heart-broken text-4xl text-purple-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Borderline</h2>
                 <p class="text-sm text-slate-400">Emotional instability, fear of abandonment, and intense relationships.
                 </p>
             </a>
 
-            <!-- 3. Depressive -->
             <a href="depressive.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-blue-900/20 rounded-xl mb-4 flex items-center justify-center border border-blue-500/20">
-                    <i class="fas fa-cloud-rain text-4xl text-blue-400"></i></div>
+                    <i class="fas fa-cloud-rain text-4xl text-blue-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Depressive</h2>
                 <p class="text-sm text-slate-400">Persistently low mood, energy loss, and feelings of inadequacy.</p>
             </a>
 
-            <!-- 4. Anxiety -->
             <a href="anxiety.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-yellow-900/20 rounded-xl mb-4 flex items-center justify-center border border-yellow-500/20">
-                    <i class="fas fa-bolt text-4xl text-yellow-400"></i></div>
+                    <i class="fas fa-bolt text-4xl text-yellow-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Anxiety</h2>
                 <p class="text-sm text-slate-400">Excessive worry, tension, and anticipation of future threats.</p>
             </a>
 
-            <!-- 5. Compulsive -->
             <a href="compulsive.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-emerald-900/20 rounded-xl mb-4 flex items-center justify-center border border-emerald-500/20">
-                    <i class="fas fa-list-check text-4xl text-emerald-400"></i></div>
+                    <i class="fas fa-list-check text-4xl text-emerald-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Compulsive</h2>
                 <p class="text-sm text-slate-400">Preoccupation with orderliness, perfectionism, and control.</p>
             </a>
 
-            <!-- 6. Avoidant -->
             <a href="avoidant.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-gray-700/30 rounded-xl mb-4 flex items-center justify-center border border-gray-500/20">
-                    <i class="fas fa-user-shield text-4xl text-gray-400"></i></div>
+                    <i class="fas fa-user-shield text-4xl text-gray-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Avoidant</h2>
                 <p class="text-sm text-slate-400">Social inhibition, feelings of inadequacy, and hypersensitivity.</p>
             </a>
 
-            <!-- 7. Paranoid -->
             <a href="paranoid.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-orange-900/20 rounded-xl mb-4 flex items-center justify-center border border-orange-500/20">
-                    <i class="fas fa-eye text-4xl text-orange-400"></i></div>
+                    <i class="fas fa-eye text-4xl text-orange-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Paranoid</h2>
                 <p class="text-sm text-slate-400">Distrust and suspicion of others' motives without sufficient basis.
                 </p>
             </a>
 
-            <!-- 8. Histrionic -->
             <a href="histrionic.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-pink-900/20 rounded-xl mb-4 flex items-center justify-center border border-pink-500/20">
-                    <i class="fas fa-theater-masks text-4xl text-pink-400"></i></div>
+                    <i class="fas fa-theater-masks text-4xl text-pink-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Histrionic</h2>
                 <p class="text-sm text-slate-400">Excessive emotionality and attention-seeking behavior.</p>
             </a>
 
-            <!-- 9. Schizoid -->
             <a href="schizoid.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-indigo-900/20 rounded-xl mb-4 flex items-center justify-center border border-indigo-500/20">
-                    <i class="fas fa-snowflake text-4xl text-indigo-400"></i></div>
+                    <i class="fas fa-snowflake text-4xl text-indigo-400"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Schizoid</h2>
                 <p class="text-sm text-slate-400">Detachment from social relationships and limited emotional expression.
                 </p>
             </a>
 
-            <!-- 10. Aggressive -->
             <a href="aggressive.html"
                 class="article-card glass-panel p-6 rounded-2xl transition-all duration-300 border border-slate-700/50 group">
                 <div
                     class="h-32 bg-red-800/20 rounded-xl mb-4 flex items-center justify-center border border-red-600/20">
-                    <i class="fas fa-fist-raised text-4xl text-red-500"></i></div>
+                    <i class="fas fa-fist-raised text-4xl text-red-500"></i>
+                </div>
                 <h2 class="text-xl font-bold text-white mb-2 group-hover:text-indigo-400">Aggressive</h2>
                 <p class="text-sm text-slate-400">Hostility, irritability, and tendency towards conflict or domination.
                 </p>
             </a>
         </div>
         <footer class="mt-12 text-center text-slate-500 text-sm border-t border-slate-700/50 pt-8">
-            <p>&copy; 2025 Soul-Hub.</p>
+            <p>&copy; 2024 Soul-Hub.</p>
         </footer>
     </div>
 </body>
-
 
 </html>
