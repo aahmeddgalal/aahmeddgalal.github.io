@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul-Hub | Personality Analyzer</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js for the Result Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-option {
+            transition: all 0.2s ease;
+        }
+
+        .btn-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-option:active {
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #818cf8;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #0f172a;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+
+    <!-- Main Container -->
+    <div id="app-container"
+        class="w-full max-w-4xl glass-panel rounded-2xl flex flex-col relative overflow-hidden h-[90vh]">
+
+        <!-- Decorative Background Elements -->
+        <div
+            class="absolute top-0 left-0 w-32 h-32 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob pointer-events-none">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none">
+        </div>
+
+        <!-- NAVIGATION BAR -->
+        <nav class="p-6 border-b border-slate-700/50 flex flex-wrap justify-between items-center z-20 bg-slate-900/40">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                <!-- <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">P
+                </div> -->
+                <span class="font-bold text-lg tracking-tight">Soul-Hub</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+                <span onclick="navigateTo('home')" class="nav-link hover:text-white" id="nav-home">Home</span>
+                <span onclick="navigateTo('about')" class="nav-link hover:text-white" id="nav-about">About Me</span>
+                <span onclick="navigateTo('contact')" class="nav-link hover:text-white" id="nav-contact">Contact</span>
+                <span onclick="navigateTo('disclaimer')" class="nav-link hover:text-white"
+                    id="nav-disclaimer">Disclaimer</span>
+                <span onclick="navigateTo('privacy')" class="nav-link hover:text-white" id="nav-privacy">Privacy</span>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-slate-300 hover:text-white"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-slate-800 border-b border-slate-700 p-4 absolute top-[80px] left-0 w-full z-30 flex flex-col gap-4 shadow-xl">
+            <span onclick="navigateTo('home'); toggleMobileMenu()"
+                class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">Home</span>
+            <span onclick="navigateTo('about'); toggleMobileMenu()"
+                class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">About Me</span>
+            <span onclick="navigateTo('contact'); toggleMobileMenu()"
+                class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">Contact</span>
+            <span onclick="navigateTo('disclaimer'); toggleMobileMenu()"
+                class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">Disclaimer</span>
+            <span onclick="navigateTo('privacy'); toggleMobileMenu()"
+                class="text-slate-300 hover:text-white py-2">Privacy Policy</span>
+        </div>
+
+        <!-- CONTENT AREA (Scrollable) -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 relative">
+
+            <!-- PAGE: HOME / WELCOME -->
+            <div id="page-home" class="fade-in">
+                <div class="text-center mt-8">
+                    <div class="mb-6 inline-block p-4 rounded-full bg-indigo-500/20 text-indigo-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h1
+                        class="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300">
+                        Personality Test
+                    </h1>
+                    <p class="text-lg text-slate-300 mb-10 max-w-lg mx-auto leading-relaxed">
+                        A 100-question assessment measuring alignment with various personality styles.
+                    </p>
+
+                    <button onclick="startQuiz()"
+                        class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transition-all transform hover:scale-105 mb-4">
+                        Begin Assessment
+                    </button>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest">Takes approx 10-15 minutes</p>
+                </div>
+
+                <!-- Teaser for About Me -->
+                <div class="mt-16 text-center">
+                    <p class="text-slate-400 text-sm cursor-pointer hover:text-indigo-300 transition-colors"
+                        onclick="navigateTo('about')">
+                        Created by Ahmed <i class="fas fa-arrow-right ml-1"></i>
+                    </p>
+                </div>
+            </div>
+
+            <!-- PAGE: ABOUT ME -->
+            <div id="page-about" class="hidden fade-in">
+                <div class="bg-slate-800/30 rounded-xl p-6 md:p-8 border border-slate-700/50">
+                    <div class="flex flex-col md:flex-row items-start gap-8">
+                        <div class="shrink-0 mx-auto md:mx-0">
+                            <!-- Image: Displays ahmed.jpg, falls back to initials if not found -->
+                            <img src="ahmed.jpg" alt="Ahmed"
+                                class="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-lg"
+                                onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ahmed&background=6366f1&color=fff&size=128'">
+                        </div>
+                        <div class="w-full">
+                            <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                                About Me
+                                <span
+                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Coder and part-time med-student</span>
+                            </h2>
+                            <div class="h-1 w-20 bg-indigo-500 rounded mb-6"></div>
+
+                            <p class="text-slate-300 text-base leading-relaxed mb-4">
+                                Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer and a part-time medstudent 
+                            </p>
+                            <p class="text-slate-300 text-base leading-relaxed mb-6">
+                                I created this website to share interactive tests and self-assessment tools that help
+                                people explore their personality, emotions, and mental patterns in a simple, accessible
+                                way.
+                                I’m also interested in computer science, AI development, and creating digital tools that
+                                make self-reflection easier and more enjoyable.
+                            </p>
+
+                            <div class="mt-8 flex gap-4">
+                                <button onclick="navigateTo('contact')"
+                                    class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-sm font-semibold transition-colors">
+                                    Get in Touch
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: CONTACT -->
+            <div id="page-contact" class="hidden fade-in">
+                <h2 class="text-2xl font-bold text-white mb-6">Contact & Info</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/aahmeddgalal?igsh=MWowbGMzYWwwemFmYQ%3D%3D&utm_source=qr"
+                        target="_blank"
+                        class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-pink-500/50 hover:bg-slate-800 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-pink-600/20 text-pink-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">Instagram</h3>
+                                <p class="text-xs text-slate-400">@aahmeddgalal</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/share/1ALjHnkErL/?mibextid=wwXIfr" target="_blank"
+                        class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">Facebook</h3>
+                                <p class="text-xs text-slate-400">Connect on Facebook</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:aahmeddgalal@gmail.com"
+                        class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">Email</h3>
+                                <p class="text-xs text-slate-400">aahmeddgalal@gmail.com</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Linktree -->
+                    <a href="https://linktr.ee/aahmeddgalal" target="_blank"
+                        class="block p-6 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-green-500/50 hover:bg-slate-800 transition-all group">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-green-600/20 text-green-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-200">Linktree</h3>
+                                <p class="text-xs text-slate-400">All Links</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PAGE: DISCLAIMER -->
+            <div id="page-disclaimer" class="hidden fade-in">
+                <h2 class="text-2xl font-bold text-white mb-6">Disclaimer</h2>
+                <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mb-6">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-exclamation-triangle text-red-400 text-2xl mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-200 mb-2">Not a Medical Diagnosis</h3>
+                            <p class="text-red-100/80 text-sm leading-relaxed">
+                                The tests and content on this website are for <strong>educational, entertainment, and
+                                    self-awareness purposes only</strong>. They are not a substitute for a professional
+                                psychological evaluation, medical diagnosis, or treatment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-slate-300 space-y-4 text-sm leading-relaxed">
+                    <p>
+                        While these assessments are based on psychological theories and established traits, an online
+                        quiz cannot account for the complexity of individual mental health. High scores in specific
+                        categories (e.g., Narcissism, Depressive) do not constitute a clinical disorder.
+                    </p>
+                    <p>
+                        If you are experiencing distress, mental health challenges, or are concerned about your
+                        well-being, please consult a qualified mental health professional or doctor.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PAGE: PRIVACY POLICY -->
+            <div id="page-privacy" class="hidden fade-in">
+                <h2 class="text-2xl font-bold text-white mb-6">Privacy Policy</h2>
+                <div class="space-y-6 text-slate-300 leading-relaxed">
+                    <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-indigo-300 font-bold mb-2">1. No Data Storage</h3>
+                        <p class="text-sm">
+                            PersonaFlow is a client-side application. This means that <strong>all processing happens
+                                directly in your web browser</strong>. We do not have a backend server, database, or
+                            cloud storage. Your answers, scores, and results are never sent to us or stored on any
+                            server.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-indigo-300 font-bold mb-2">2. Anonymity</h3>
+                        <p class="text-sm">
+                            Since we do not collect data, your participation is completely anonymous. Once you close or
+                            refresh this page, your results are lost permanently unless you choose to save them manually
+                            (e.g., by taking a screenshot).
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800/30 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-indigo-300 font-bold mb-2">3. Third-Party Services</h3>
+                        <p class="text-sm">
+                            This website is hosted on GitHub Pages. Please refer to GitHub's privacy statement regarding
+                            standard web logs (IP addresses) that are collected for security and hosting purposes. We
+                            also use external libraries (Chart.js, Tailwind, FontAwesome) loaded via CDNs which may
+                            collect standard usage metrics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: QUIZ (Existing) -->
+            <div id="page-quiz" class="hidden fade-in">
+                <div class="flex justify-between text-xs text-slate-400 mb-2 uppercase tracking-wide">
+                    <span>Assessment Progress</span>
+                    <span id="question-tracker">1 / 100</span>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-700 h-2 rounded-full mb-8 overflow-hidden">
+                    <div id="progress-bar"
+                        class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                        style="width: 0%"></div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="mb-8 min-h-[120px]">
+                    <h2 id="question-category" class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2">
+                        Category</h2>
+                    <h3 id="question-text" class="text-2xl md:text-3xl font-bold text-white leading-tight">
+                        Loading Question...
+                    </h3>
+                </div>
+
+                <!-- Options -->
+                <div class="space-y-3">
+                    <button onclick="handleAnswer(1)"
+                        class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
+                        <span
+                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">1</span>
+                        <span class="text-slate-300 group-hover:text-white">Strongly Disagree</span>
+                    </button>
+                    <button onclick="handleAnswer(2)"
+                        class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
+                        <span
+                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">2</span>
+                        <span class="text-slate-300 group-hover:text-white">Disagree</span>
+                    </button>
+                    <button onclick="handleAnswer(3)"
+                        class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
+                        <span
+                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">3</span>
+                        <span class="text-slate-300 group-hover:text-white">Neutral</span>
+                    </button>
+                    <button onclick="handleAnswer(4)"
+                        class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
+                        <span
+                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">4</span>
+                        <span class="text-slate-300 group-hover:text-white">Agree</span>
+                    </button>
+                    <button onclick="handleAnswer(5)"
+                        class="btn-option w-full p-3 md:p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-indigo-500 text-left flex items-center group">
+                        <span
+                            class="w-8 h-8 rounded-full border-2 border-slate-600 group-hover:border-indigo-500 mr-4 flex items-center justify-center text-xs text-slate-500 group-hover:text-indigo-500">5</span>
+                        <span class="text-slate-300 group-hover:text-white">Strongly Agree</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PAGE: LOADING -->
+            <div id="page-loading" class="hidden text-center py-20 fade-in">
+                <div
+                    class="inline-block animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-indigo-500 mb-4">
+                </div>
+                <h2 class="text-2xl font-bold">Analyzing Profile...</h2>
+                <p class="text-slate-400">Comparing response patterns to established archetypes.</p>
+            </div>
+
+            <!-- PAGE: RESULTS -->
+            <div id="page-result" class="hidden fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Left Col: Chart and Dominant Trait -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Psychological Matrix</h2>
+                        <p class="text-slate-400 mb-6 text-sm">Visual representation of your personality traits.</p>
+
+                        <div class="relative w-full h-[350px] mb-6">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+
+                        <div class="bg-indigo-900/20 border border-indigo-500/30 p-4 rounded-xl">
+                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern</h3>
+                            <p id="dominant-trait-desc" class="text-slate-200 text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+
+                    <!-- Right Col: Detailed Stats -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Detailed Statistics</h2>
+                        <p class="text-slate-400 mb-6 text-sm">Percentage match for each factor.</p>
+
+                        <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                            <div id="stats-grid" class="grid grid-cols-1 gap-y-3">
+                                <!-- Injected JS -->
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <button onclick="location.reload()"
+                                class="w-full py-4 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition-colors">
+                                Retake Assessment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of Content Area -->
+    </div>
+
+    <script>
+        // --- NAVIGATION LOGIC ---
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = ['home', 'about', 'contact', 'disclaimer', 'privacy', 'quiz', 'loading', 'result'];
+            pages.forEach(p => {
+                const el = document.getElementById('page-' + p);
+                if (el) el.classList.add('hidden');
+            });
+
+            // Show target page
+            const targetEl = document.getElementById('page-' + pageId);
+            if (targetEl) targetEl.classList.remove('hidden');
+
+            // Update Navigation Active State (Desktop)
+            const navLinks = ['home', 'about', 'contact', 'disclaimer', 'privacy'];
+            navLinks.forEach(p => {
+                const navEl = document.getElementById('nav-' + p);
+                if (navEl) {
+                    if (p === pageId) navEl.classList.add('active', 'text-white');
+                    else navEl.classList.remove('active', 'text-white');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // --- DATA & CONFIG ---
+        // 10 Clinical Factors: 
+        // Narcissism, Borderline, Depressive, Anxiety, Compulsive, Avoidant, Paranoid, Histrionic, Schizoid, Aggressive
+
+        const questions = [
+            // --- 1. Narcissism (Grandiosity, Entitlement) ---
+            { category: "Narcissism", text: "I believe I am more capable than most people." },
+            { category: "Narcissism", text: "I expect others to respect my superior status." },
+            { category: "Narcissism", text: "I get annoyed when I don't get what I want." },
+            { category: "Narcissism", text: "People often envy me." },
+            { category: "Narcissism", text: "I require a lot of admiration." },
+            { category: "Narcissism", text: "I can be manipulative to achieve my goals." },
+            { category: "Narcissism", text: "I lack empathy for those who are weak." },
+            { category: "Narcissism", text: "I am destined for greatness." },
+            { category: "Narcissism", text: "I often fantasize about unlimited success." },
+            { category: "Narcissism", text: "I am very concerned with my public image." },
+
+            // --- 2. Borderline (Instability) ---
+            { category: "Borderline", text: "My mood changes very rapidly." },
+            { category: "Borderline", text: "I am terrified of being abandoned." },
+            { category: "Borderline", text: "I often feel empty inside." },
+            { category: "Borderline", text: "My relationships are intense and unstable." },
+            { category: "Borderline", text: "I have trouble controlling my anger." },
+            { category: "Borderline", text: "I sometimes feel like I don't know who I really am." },
+            { category: "Borderline", text: "I act impulsively when I am upset." },
+            { category: "Borderline", text: "I move between loving and hating people quickly." },
+            { category: "Borderline", text: "I have engaged in reckless behaviors." },
+            { category: "Borderline", text: "I feel emotions much more intensely than others." },
+
+            // --- 3. Depressive (Melancholy) ---
+            { category: "Depressive", text: "I often feel down or hopeless." },
+            { category: "Depressive", text: "I have little energy to do things." },
+            { category: "Depressive", text: "I struggle to find pleasure in things I used to enjoy." },
+            { category: "Depressive", text: "I feel worthless or guilty often." },
+            { category: "Depressive", text: "The future looks bleak to me." },
+            { category: "Depressive", text: "I have trouble sleeping or sleep too much." },
+            { category: "Depressive", text: "I feel like a failure." },
+            { category: "Depressive", text: "I often feel sad without a specific reason." },
+            { category: "Depressive", text: "Everything feels like a huge effort." },
+            { category: "Depressive", text: "I isolate myself when I feel low." },
+
+            // --- 4. Anxiety (Fear) ---
+            { category: "Anxiety", text: "I worry excessively about many things." },
+            { category: "Anxiety", text: "I feel restless or on edge." },
+            { category: "Anxiety", text: "My heart races for no apparent reason." },
+            { category: "Anxiety", text: "I have trouble relaxing." },
+            { category: "Anxiety", text: "I fear that something terrible will happen." },
+            { category: "Anxiety", text: "I get easily startled." },
+            { category: "Anxiety", text: "I have difficulty concentrating because of worry." },
+            { category: "Anxiety", text: "Social situations make me extremely nervous." },
+            { category: "Anxiety", text: "I replay past conversations in my head." },
+            { category: "Anxiety", text: "I dread upcoming events." },
+
+            // --- 5. Compulsive (Rigidity) ---
+            { category: "Compulsive", text: "I need things to be organized in a specific way." },
+            { category: "Compulsive", text: "I check things repeatedly (like locks or switches)." },
+            { category: "Compulsive", text: "I am a perfectionist." },
+            { category: "Compulsive", text: "I get upset if my routine is disturbed." },
+            { category: "Compulsive", text: "I make detailed lists for everything." },
+            { category: "Compulsive", text: "I have trouble discarding old items." },
+            { category: "Compulsive", text: "I focus on details so much I miss the big picture." },
+            { category: "Compulsive", text: "I hold myself to impossibly high standards." },
+            { category: "Compulsive", text: "I am very rigid about rules." },
+            { category: "Compulsive", text: "Messiness causes me physical distress." },
+
+            // --- 6. Avoidant (Withdrawal) ---
+            { category: "Avoidant", text: "I avoid social activities for fear of being criticized." },
+            { category: "Avoidant", text: "I feel inferior to others socially." },
+            { category: "Avoidant", text: "I am very shy with new people." },
+            { category: "Avoidant", text: "I worry constantly about being rejected." },
+            { category: "Avoidant", text: "I inhibit myself in relationships because of fear." },
+            { category: "Avoidant", text: "I view myself as socially inept." },
+            { category: "Avoidant", text: "I am reluctant to take personal risks." },
+            { category: "Avoidant", text: "I prefer to be alone than to risk embarrassment." },
+            { category: "Avoidant", text: "I am very sensitive to teasing." },
+            { category: "Avoidant", text: "I feel invisible in groups." },
+
+            // --- 7. Paranoid (Suspicion) ---
+            { category: "Paranoid", text: "I suspect others are exploiting or deceiving me." },
+            { category: "Paranoid", text: "I find it hard to trust friends or associates." },
+            { category: "Paranoid", text: "I read hidden demeaning meanings into benign remarks." },
+            { category: "Paranoid", text: "I hold grudges for a long time." },
+            { category: "Paranoid", text: "I perceive attacks on my character that others don't see." },
+            { category: "Paranoid", text: "I am jealous and suspicious of my partner." },
+            { category: "Paranoid", text: "I am secretive because I fear information will be used against me." },
+            { category: "Paranoid", text: "I feel people are talking about me behind my back." },
+            { category: "Paranoid", text: "I am always on guard for betrayal." },
+            { category: "Paranoid", text: "The world is a hostile place." },
+
+            // --- 8. Histrionic (Attention Seeking) ---
+            { category: "Histrionic", text: "I feel uncomfortable when I am not the center of attention." },
+            { category: "Histrionic", text: "I use my physical appearance to draw attention." },
+            { category: "Histrionic", text: "My emotions are shallow and shift rapidly." },
+            { category: "Histrionic", text: "I speak in a dramatic, impressionistic style." },
+            { category: "Histrionic", text: "I consider relationships to be more intimate than they are." },
+            { category: "Histrionic", text: "I am easily influenced by others." },
+            { category: "Histrionic", text: "I love excitement and get bored easily." },
+            { category: "Histrionic", text: "I can be overly seductive or provocative." },
+            { category: "Histrionic", text: "I exaggerate my emotions to get reactions." },
+            { category: "Histrionic", text: "I crave novelty and stimulation." },
+
+            // --- 9. Schizoid (Detachment) ---
+            { category: "Schizoid", text: "I neither desire nor enjoy close relationships." },
+            { category: "Schizoid", text: "I almost always choose solitary activities." },
+            { category: "Schizoid", text: "I have little interest in sexual experiences with others." },
+            { category: "Schizoid", text: "I take pleasure in few, if any, activities." },
+            { category: "Schizoid", text: "I lack close friends or confidants." },
+            { category: "Schizoid", text: "I appear indifferent to the praise or criticism of others." },
+            { category: "Schizoid", text: "I feel emotionally cold or detached." },
+            { category: "Schizoid", text: "I prefer to live in my own world." },
+            { category: "Schizoid", text: "I find social interactions draining and pointless." },
+            { category: "Schizoid", text: "I have a flat emotional response to most things." },
+
+            // --- 10. Aggressive (Hostility) ---
+            { category: "Aggressive", text: "I have a short temper." },
+            { category: "Aggressive", text: "I enjoy seeing people get what they deserve." },
+            { category: "Aggressive", text: "I get into arguments or fights easily." },
+            { category: "Aggressive", text: "I don't mind hurting people's feelings if they are wrong." },
+            { category: "Aggressive", text: "I feel the urge to break things when angry." },
+            { category: "Aggressive", text: "Revenge is sweet." },
+            { category: "Aggressive", text: "I am often described as intimidating." },
+            { category: "Aggressive", text: "I have little patience for stupidity." },
+            { category: "Aggressive", text: "I can be cruel if someone crosses me." },
+            { category: "Aggressive", text: "I enjoy positions of power where I can dominate others." }
+        ];
+
+        let currentQuestionIndex = 0;
+        let scores = {
+            "Narcissism": 0, "Borderline": 0, "Depressive": 0, "Anxiety": 0,
+            "Compulsive": 0, "Avoidant": 0, "Paranoid": 0,
+            "Histrionic": 0, "Schizoid": 0, "Aggressive": 0
+        };
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Initialize App
+        let shuffledQuestions = [...questions];
+        shuffleArray(shuffledQuestions);
+
+        function startQuiz() {
+            navigateTo('quiz');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const question = shuffledQuestions[currentQuestionIndex];
+            document.getElementById('question-category').innerText = `Question ${currentQuestionIndex + 1}`;
+            document.getElementById('question-text').innerText = question.text;
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / shuffledQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('question-tracker').innerText = `${currentQuestionIndex + 1} / ${shuffledQuestions.length}`;
+        }
+
+        function handleAnswer(value) {
+            const question = shuffledQuestions[currentQuestionIndex];
+            scores[question.category] += value;
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < shuffledQuestions.length) {
+                renderQuestion();
+            } else {
+                showLoading();
+            }
+        }
+
+        function showLoading() {
+            navigateTo('loading');
+
+            setTimeout(showResults, 2000);
+        }
+
+        function showResults() {
+            navigateTo('result');
+
+            renderChart();
+            generateAnalysis();
+        }
+
+        function generateAnalysis() {
+            // 1. Calculate Percentages
+            // Max raw score per category is 10 questions * 5 points = 50.
+            const percentages = {};
+            for (const trait in scores) {
+                percentages[trait] = Math.round((scores[trait] / 50) * 100);
+            }
+
+            // 2. Determine Dominant Trait
+            let maxPercent = 0;
+            let dominantTrait = "";
+            for (const [trait, percent] of Object.entries(percentages)) {
+                if (percent > maxPercent) {
+                    maxPercent = percent;
+                    dominantTrait = trait;
+                }
+            }
+
+            // 3. Render Stats Grid with Percentages
+            const statsGrid = document.getElementById('stats-grid');
+            let gridHTML = '';
+
+            // Sort traits by percentage descending
+            const sortedTraits = Object.entries(percentages).sort((a, b) => b[1] - a[1]);
+
+            sortedTraits.forEach(([trait, percent]) => {
+                let colorClass = "bg-slate-700";
+                if (percent >= 75) colorClass = "bg-red-600";
+                else if (percent >= 50) colorClass = "bg-indigo-600";
+
+                gridHTML += `
+                <div class="flex items-center justify-between group">
+                    <span class="text-sm font-semibold text-slate-300 w-32">${trait}</span>
+                    <div class="flex-1 mx-3 h-2 bg-slate-700 rounded-full overflow-hidden">
+                        <div class="h-full rounded-full ${colorClass}" style="width: ${percent}%"></div>
+                    </div>
+                    <span class="text-sm font-bold text-white w-10 text-right">${percent}%</span>
+                </div>
+                `;
+            });
+            statsGrid.innerHTML = gridHTML;
+
+
+            // 4. Dominant Trait Description
+            const descriptions = {
+                "Narcissism": "High scores indicate a need for admiration and a lack of empathy. You may prioritize your own image and success above the needs of others.",
+                "Borderline": "High scores indicate emotional instability and a fear of abandonment. Relationships may be intense and moods can fluctuate rapidly.",
+                "Depressive": "High scores indicate feelings of sadness, low energy, and pessimism. You may struggle to find joy in daily activities.",
+                "Anxiety": "High scores indicate excessive worry and tension. You may constantly anticipate negative outcomes.",
+                "Compulsive": "High scores indicate a need for order, perfectionism, and control. Flexibility may be difficult for you.",
+                "Avoidant": "High scores indicate social inhibition and feelings of inadequacy. You likely avoid social risk to prevent rejection.",
+                "Paranoid": "High scores indicate distrust and suspicion of others. You may perceive threats where none exist.",
+                "Histrionic": "High scores indicate excessive emotionality and attention-seeking. You may feel uncomfortable when not the focus of attention.",
+                "Schizoid": "High scores indicate a detachment from social relationships and a restricted range of emotional expression.",
+                "Aggressive": "High scores indicate hostility and a tendency towards conflict or domination."
+            };
+
+            const descEl = document.getElementById('dominant-trait-desc');
+            descEl.innerHTML = `<strong>${dominantTrait} (${maxPercent}%)</strong>: ${descriptions[dominantTrait]}`;
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+
+            // Map scores to percentages
+            const labels = Object.keys(scores);
+            const dataValues = labels.map(label => (scores[label] / 50) * 100);
+
+            // Destroy existing chart if present to prevent overlap
+            const chartStatus = Chart.getChart("radarChart");
+            if (chartStatus != undefined) {
+                chartStatus.destroy();
+            }
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Trait Intensity',
+                        data: dataValues,
+                        backgroundColor: 'rgba(239, 68, 68, 0.4)', // Red-500 transparent
+                        borderColor: '#f87171', // Red-400
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#f87171',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#fff',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: {
+                                color: '#cbd5e1', // Slate-300
+                                font: {
+                                    size: 11,
+                                    family: "'Inter', sans-serif"
+                                }
+                            },
+                            ticks: {
+                                display: false,
+                                backdropColor: 'transparent',
+                                max: 100,
+                                min: 0
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Init - Highlight Home
+        document.getElementById('nav-home').classList.add('active', 'text-white');
+    </script>
+</body>
+
+</html>
