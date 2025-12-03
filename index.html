@@ -390,6 +390,21 @@
                             <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a href="blog.html" class="underline hover:text-white">Library</a></h3>
                             <p id="dominant-trait-desc" class="text-slate-200 text-sm leading-relaxed"></p>
                         </div>
+                                    <div class="mt-6 flex justify-center gap-4">
+                <h3 class="text-slate-400 text-sm my-auto">Share Result:</h3>
+                <!-- Facebook -->
+                <button onclick="shareResult('fb')" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center transition-colors">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <!-- Twitter -->
+                <button onclick="shareResult('tw')" class="w-10 h-10 rounded-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <!-- WhatsApp -->
+                <button onclick="shareResult('wa')" class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+            </div>
                     </div>
                     <!-- Right Col: Detailed Stats -->
                     <div>
@@ -750,7 +765,86 @@
         }
 
         document.getElementById('nav-home').classList.add('active', 'text-white');
+
+                // دالة لحفظ التقدم بعد كل إجابة
+        function saveProgress() {
+            const progressData = {
+                index: currentQuestionIndex,
+                scores: scores,
+                history: answerHistory
+            };
+            localStorage.setItem('soulHubProgress', JSON.stringify(progressData));
+        }
+        
+        // تعديل دالة handleAnswer لتشمل الحفظ
+        function handleAnswer(value) {
+            // ... الكود القديم ...
+            scores[question.category] += value;
+            answerHistory.push(value);
+            currentQuestionIndex++;
+            
+            // إضافة الحفظ هنا
+            saveProgress(); 
+        
+            if (currentQuestionIndex < shuffledQuestions.length) {
+                // ...
+            }
+        }
+        
+        // دالة لاسترجاع التقدم عند بدء الموقع
+        function loadProgress() {
+            const savedData = localStorage.getItem('soulHubProgress');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                // نسأل المستخدم هل يريد الإكمال
+                if(confirm("لقد وجدت اختباراً غير مكتمل. هل تريد المتابعة من حيث توقفت؟")) {
+                    currentQuestionIndex = data.index;
+                    scores = data.scores;
+                    answerHistory = data.history || [];
+                    navigateTo('quiz');
+                    renderQuestion();
+                    // إظهار زر الرجوع إذا لم نكن في البداية
+                    if (currentQuestionIndex > 0) {
+                        document.getElementById('btn-back').classList.remove('hidden');
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // تعديل زر البدء لفحص التقدم
+        function startQuiz() {
+            if(!loadProgress()){ // لو مفيش تقدم محفوظ أو المستخدم رفض يكمله، ابدأ من جديد
+                navigateTo('quiz');
+                answerHistory = [];
+                // تصفير النقاط
+                for (let key in scores) scores[key] = 0;
+                localStorage.removeItem('soulHubProgress'); // مسح القديم
+                document.getElementById('btn-back').classList.add('hidden');
+                renderQuestion();
+            }
+        }
+
+        function shareResult(platform) {
+    // نحصل على النمط السائد والنسبة
+    const dominantText = document.getElementById('dominant-trait-desc').innerText.split('(')[0]; 
+    const shareText = `I just took the Personality Test on Soul-Hub! My dominant trait is ${dominantText}. Discover yours here:`;
+    const shareUrl = window.location.href;
+
+    let url = '';
+    if (platform === 'fb') {
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+    } else if (platform === 'tw') {
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    } else if (platform === 'wa') {
+        url = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+    }
+    
+    window.open(url, '_blank');
+}
     </script>
 </body>
 
 </html>
+
