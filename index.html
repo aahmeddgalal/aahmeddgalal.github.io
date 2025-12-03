@@ -115,32 +115,45 @@
             class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000 pointer-events-none">
         </div>
 
+        <!-- Navigation Bar -->
         <nav class="p-6 border-b border-slate-700/50 flex flex-wrap justify-between items-center z-20 bg-slate-900/40">
             <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
-                
                 <span class="font-bold text-lg tracking-tight">Soul-Hub</span>
             </div>
 
-            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-300 items-center">
                 <span onclick="navigateTo('home')" class="nav-link hover:text-white" id="nav-home">Home</span>
+
+                <!-- Library Link (Desktop) -->
+                <a href="blog.html" class="nav-link text-indigo-400 font-bold hover:text-indigo-300">Library</a>
+
                 <span onclick="navigateTo('about')" class="nav-link hover:text-white" id="nav-about">About Me</span>
                 <span onclick="navigateTo('contact')" class="nav-link hover:text-white" id="nav-contact">Contact</span>
-                <a href="blog.html"><span class="nav-link hover:text-white" id="nav-contact">Library</span></a>
                 <span onclick="navigateTo('disclaimer')" class="nav-link hover:text-white"
                     id="nav-disclaimer">Disclaimer</span>
                 <span onclick="navigateTo('privacy')" class="nav-link hover:text-white" id="nav-privacy">Privacy</span>
             </div>
 
+            <!-- Mobile Menu Button -->
             <button class="md:hidden text-slate-300 hover:text-white"
                 onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </nav>
 
+        <!-- Mobile Menu Dropdown (Fixed) -->
         <div id="mobile-menu"
             class="hidden md:hidden bg-slate-800 border-b border-slate-700 p-4 absolute top-[80px] left-0 w-full z-30 flex flex-col gap-4 shadow-xl">
             <span onclick="navigateTo('home'); toggleMobileMenu()"
                 class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">Home</span>
+
+            <!-- ADDED LIBRARY HERE (THIS WAS MISSING) -->
+            <a href="blog.html"
+                class="text-indigo-400 font-bold hover:text-indigo-300 py-2 border-b border-slate-700/50">
+                <i class="fas fa-book-medical mr-2"></i>Psychology Library
+            </a>
+
             <span onclick="navigateTo('about'); toggleMobileMenu()"
                 class="text-slate-300 hover:text-white py-2 border-b border-slate-700/50">About Me</span>
             <span onclick="navigateTo('contact'); toggleMobileMenu()"
@@ -175,6 +188,16 @@
                         Begin Assessment
                     </button>
                     <p class="text-xs text-slate-500 uppercase tracking-widest">Takes approx 10-15 minutes</p>
+
+                    <!-- Call to Action for Library (Home) -->
+                    <div class="mt-8 pt-8 border-t border-slate-700/50">
+                        <p class="text-slate-400 text-sm mb-4">Want to learn more about personality disorders?</p>
+                        <a href="blog.html"
+                            class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold group transition-colors">
+                            Visit the Psychology Library
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="mt-16 text-center">
@@ -198,19 +221,22 @@
                             <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                                 About Me
                                 <span
-                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Programmer and part-time med-student</span>
+                                    class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded-full border border-indigo-500/20 align-middle">Programmer
+                                    and part-time med-student</span>
                             </h2>
                             <div class="h-1 w-20 bg-indigo-500 rounded mb-6"></div>
 
                             <p class="text-slate-300 text-base leading-relaxed mb-4">
-                                Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer and a part-time medstudent 
+                                Hi, I’m <span class="text-indigo-400 font-semibold">Galileo:&#41;</span>, a programmer
+                                and a part-time medstudent
                             </p>
                             <p class="text-slate-300 text-base leading-relaxed mb-6">
                                 I’m also interested in AI development, and psychology
-                                I've created this website to make it easy for people explore their personalities, emotions, and mental patterns in a simple, accessible
+                                I've created this website to make it easy for people explore their personalities,
+                                emotions, and mental patterns in a simple, accessible
                                 way.
-                                <p>If interested, Follow me on social media!</p>
-                                
+                            <p>If interested, Follow me on social media!</p>
+
                             </p>
 
                             <div class="mt-8 flex gap-4">
@@ -435,7 +461,8 @@
                         </div>
 
                         <div class="bg-indigo-900/20 border border-indigo-500/30 p-4 rounded-xl">
-                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a href="blog.html">Library</a></h3>
+                            <h3 class="text-indigo-300 font-bold mb-1">Primary Pattern - Read more in the <a
+                                    href="blog.html" class="underline hover:text-white">Library</a></h3>
                             <p id="dominant-trait-desc" class="text-slate-200 text-sm leading-relaxed"></p>
                         </div>
                     </div>
